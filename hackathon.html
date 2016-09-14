@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title></title>
+<script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>	
+
+<script type="text/javascript">
+	function part1(){
+		var URL="http://api.reimaginebanking.com/enterprise/accounts?key=bd591ebbe90df36cd597fb05a93a5587";
+		$.ajax({
+			dataType:"json",
+			url:URL,
+			success:function(results)
+			{
+				var final="";
+				for(var i=0;i<20;i++)
+				{
+					final+="Name:"+results.results[i].nickname+"<br/>Type:"+results.results[i].type+"<br/>Balance:"+results.results[i].balance+"<hr><br/>";
+				}
+				
+				$("#result").html(final);
+			}
+			});
+	
+	}
+	function part2(){
+		var URL="http://api.reimaginebanking.com/enterprise/accounts?key=bd591ebbe90df36cd597fb05a93a5587";
+		$.ajax({
+			dataType:"json",
+			url:URL,
+			success:function(results)
+			{
+				var final="";
+				for(var i=0;i<20;i++)
+				{
+					final+="<div style='color:red;'>"+results.results[i].nickname+"</div><br/><hr><br/>";
+				}
+				
+				$("#result1").html("<div style='border: 2px solid purple;'>"+final+"</div>");
+			}
+			});
+	
+	}
+
+
+
+	
+	
+</script>
+</head>
+<body>
+<h1>Result</h1>
+<div id="result"><button onclick="part1()">first</button></div>
+<div id="result1"><button onclick="part2()">second</button></div>
+</body>
+ 
